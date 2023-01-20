@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class GenereRegisterComponent {
   nome! : any;
-  url: string = "https://3000-ghebr0us-otakupeak-87h8ucxza4p.ws-eu83.gitpod.io/genereAnime";
+  url: string = "https://3000-ghebr0us-otakupeak-i9w30u3vcd4.ws-eu83.gitpod.io/genereAnime";
   constructor(public http : HttpClient){
     this.get(this.url);
   }
@@ -27,7 +27,7 @@ export class GenereRegisterComponent {
   click(event: any) {
     event.preventDefault();
     let scelta = this.nome.filter((g: { checked: boolean; }) => g.checked == true)
-    window.location.href = "/RisultatoAnime?scelta=" + scelta.map((g: {nome: String}) => g.nome).join(",")
+    window.location.href = "/Home" + scelta.map((g: {nome: String}) => g.nome).join(",")
   }
   update(n: any, event: any) {
     this.nome[this.nome.indexOf(n)].checked = event.target.checked;
