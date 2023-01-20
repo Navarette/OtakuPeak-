@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { GenereMangaComponent } from '../genere-manga/genere-manga.component';
+import { Data } from 'src/models/manga.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-risultato-manga',
@@ -8,9 +11,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./risultato-manga.component.css']
 })
 export class RisultatoMangaComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-mryq4ojvg6c.ws-eu83.gitpod.io/RisultatoManga";
-  generim!: any;
-  vettoreScelte! : any
+  url: string = "https://3000-ghebr0us-otakupeak-87h8ucxza4p.ws-eu83.gitpod.io/RisultatoManga";
+  generim: String[] = [];
+  vettoreScelte! : any;
+  manga!:any;
+  tipi: String[] = [];
+  
   constructor(private route: ActivatedRoute, public http : HttpClient){
     
   }
@@ -29,10 +35,18 @@ export class RisultatoMangaComponent {
     }
       
   get(url: string): void {
-    this.http.get(url).subscribe(data => {
-      this.generim = data;
-      console.log(data);
+    this.http.get<Data[]>(url).subscribe(data => {
+      for(const s of data){
+        this.generim.push(s.stato)
+      }
+      this.manga = data;
+      this.generim = this.dropDuplicate(this.generim);    
     });
   }
-
+  private dropDuplicate(arr: String[]): String[] {
+    arr = arr.filter((element, index) => {
+      return arr.indexOf(element) === index;
+    }).filter(el => el != null);
+    return arr;
+  }
 }

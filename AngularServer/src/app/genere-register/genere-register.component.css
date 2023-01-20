@@ -1,0 +1,16 @@
+@font-face {
+    font-family: "the_stoothgartregular";
+    src: url('./assets/fonts/The Stoothgart.ttf') format("truetype");
+}
+
+@media screen and (min-width: 1200px) {
+    .display-1
+    {
+        font-size: 40px !important
+    }
+}
+
+.bkg{
+    background-image: linear-gradient(RGB(241, 243, 181), RGB(20, 80, 89));
+    font-family: 'the_stoothgartregular';
+}

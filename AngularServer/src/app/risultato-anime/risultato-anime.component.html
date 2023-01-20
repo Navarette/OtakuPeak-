@@ -1,33 +1,56 @@
-<div class="dropdown" data-control="checkbox-dropdown">
-  <label class="dropdown-label">Select</label>
-    
-    <label class="dropdown-option" *ngFor="let g of genere">
-      <input type="checkbox" name="dropdown-group" value="Selection 1" />
-      {{g.tipo}}
-    </label>
-  
-</div>
-<hr>
 <div class="container-fluid">
-  
-    <table class="table table-striped">
-      <thead>
-        <th>Nome</th>
-        <th>Generi</th>
-        <th>Tipo</th>
-        <th>Episodi</th>
-        <th>Rating</th>
-            
-      </thead>
-      <tbody>
-        <tr *ngFor="let g of genere">
-            <td>{{ g.nome }}</td>
-            <td>{{ g.generi }}</td>
-            <td>{{ g.tipo }}</td>
-            <td>{{ g.episodi }}</td>
-            <td>{{ g.rating }}</td>
-              
-        </tr>
-        </tbody>
-    </table>
-    </div> 
+  <form action="/SpecificaAnime">
+    <div class="dropdown">
+      <div class="btn-group">
+
+        <button class="btn btn-secondary  float-start dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Tipo
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li *ngFor="let s of generi">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="Checkme2" />
+              <label class="form-check-label">{{s}}</label>
+            </div>
+          </li>
+        </ul>
+        <button class="btn btn-secondary float-end dropdown-toggle " type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Rating
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li>
+            <input type="range" value="0" max="10" name="volume" step="0.1"
+              oninput="this.nextElementSibling.value = this.value">
+            <output> 0 </output>
+          </li>
+        </ul>
+      </div>
+      <button type="submit" class="btn btn-primary">Conferma</button>
+
+    </div>
+  </form>
+
+  <table class="table table-striped">
+    <thead>
+      <th>Nome</th>
+      <th>Generi</th>
+      <th>Tipo</th>
+      <th>Episodi</th>
+      <th>Rating</th>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of anime">
+        <td>{{ s.nome }}</td>
+        <td>{{ s.generi }}</td>
+        <td>{{ s.tipo }}</td>
+        <td>{{ s.episodi }}</td>
+        <td>{{ s.rating }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+</div>

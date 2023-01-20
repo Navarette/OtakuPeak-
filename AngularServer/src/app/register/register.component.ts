@@ -10,7 +10,7 @@ import { Data } from 'src/models/redirectData.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-mryq4ojvg6c.ws-eu83.gitpod.io/Register";
+  url: string = "https://3000-ghebr0us-otakupeak-87h8ucxza4p.ws-eu83.gitpod.io/Register";
   form!: FormGroup;
   errorMessage!: string;
 
@@ -44,7 +44,7 @@ export class RegisterComponent {
       console.log(data);
 
       if(data.url != null) {
-        this.router.navigate([data.url]);
+        this.router.navigate(["GenereRegister"]);
       } else {
         this.errorMessage = data.data;
       }

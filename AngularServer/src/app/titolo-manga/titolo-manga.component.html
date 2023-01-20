@@ -1,34 +1,33 @@
 <div class="container-fluid">
-    <input #box (keyup)="onKey(box.value)" class="form-control mt-3 mb-3">
-    <p *ngIf="loading">LOADING...</p>
-    <table *ngIf="!loading && titolom.length > 1" class="table table-striped">
-        <thead>
-          <th>titolo</th>
-          <th>titolo_eng</th>
-          <th>stato</th>
-          <th>volumi</th>
-          <th>capitoli</th>
-          <th>Rank</th>
-          <th>rating</th>
-          <th>sinossi</th>
-          <th>Periodo_pubblicazione</th>
-          <th>generi</th>
+  <input #box (keyup)="onKey(box.value)" class="form-control mt-3 mb-3">
+  <p *ngIf="loading">LOADING...</p>
+  <table *ngIf="!loading && titolom.length > 1" class="table table-striped">
+    <thead>
+      <th>titolo</th>
+      <th>titolo_eng</th>
+      <th>stato</th>
+      <th>volumi</th>
+      <th>capitoli</th>
+      <th>Rank</th>
+      <th>rating</th>
+      <th>sinossi</th>
+      <th>Periodo_pubblicazione</th>
+      <th>generi</th>
 
-        </thead>
-        <tbody>
-          <tr *ngFor="let t of titolom">
-            <td>{{ t.titolo}}</td>
-            <td>{{ t.titolo_eng}}</td>
-            <td>{{ t.stato}}</td>
-            <td>{{ t.volumi}}</td>
-            <td>{{ t.capitoli}}</td>
-            <td>{{ t.Rank}}</td>
-            <td>{{ t.rating}}</td>
-            <td>{{ t.sinossi}}</td>
-            <td>{{ t.Periodo_Pubblicazione}}</td>
-            <td>{{ t.generi }}</td>
-
-          </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of titolom">
+        <td>{{ t.titolo}}</td>
+        <td>{{ t.titolo_eng}}</td>
+        <td>{{ t.stato}}</td>
+        <td>{{ t.volumi}}</td>
+        <td>{{ t.capitoli}}</td>
+        <td>{{ t.Rank}}</td>
+        <td>{{ t.rating}}</td>
+        <td>{{ t.sinossi}}</td>
+        <td>{{ t.Periodo_Pubblicazione}}</td>
+        <td>{{ t.generi }}</td>
+      </tr>
         </tbody>
     </table>
       <div class="alert alert-danger" *ngIf="titolom.length < 1">Non esiste il manga inserito</div>
