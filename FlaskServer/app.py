@@ -1,6 +1,7 @@
 from flask import Flask, render_template, send_file, make_response, url_for, Response, request, redirect, jsonify
 import pandas as pd
 import pymssql
+import json
 
 from flask_cors import CORS
 
@@ -42,16 +43,41 @@ def reg():
 
     if len(Cdata) < 1: # Se l'utente non esiste
         print(request.args)
-        q = 'INSERT INTO utente (username, email, pwd) VALUES (%(username)s, %(email)s, %(password)s)'
         cursor = conn.cursor(as_dict=True)
+        q = 'INSERT INTO utente (username, email, pwd) VALUES (%(username)s, %(email)s, %(password)s)'
         p = {"username": f"{username}","email": f"{email}","password": f"{password}"}
-
         cursor.execute(q, p)
         conn.commit()
-        return jsonify({'data': 'Ok!', 'url': 'login'})
-    else:
-        return jsonify({'data': 'User already exists!', 'url': None})
 
+        q = 'SELECT * FROM utente WHERE email = %(email)s'
+        p = {"email": f"{email}"}
+        cursor.execute(q, p)
+        res = cursor.fetchall()
+
+        return jsonify({'data': res[0], 'statusCode': 200})
+    else:
+        return jsonify({'errorMessage': 'User already exists!', 'statusCode': 401})
+# --------------------------------GENERI-UTENTE--------------------------------------------------
+@app.route('/saveprefs',methods=['POST'])
+def g_reg():
+    id = request.args.get("id") # ID dell'utente
+    generi = request.args.get("generi")
+
+    cursor = conn.cursor(as_dict=True)
+    if generi != None and id != None:
+        generi = json.loads(generi)
+        print(generi)
+
+        for e in generi:
+            print(e)
+            q = 'INSERT INTO user_genere (id_utente, id_genere) VALUES (%(id)s, %(g)s)'
+            p = {'id': id, 'g': e['id']}
+            cursor.execute(q, params=p)
+            conn.commit()
+
+    print(id, generi)
+    
+    return jsonify({})
 # --------------------------------LOGIN----------------------------------------------------------
 
 @app.route('/Login', methods=['POST'])

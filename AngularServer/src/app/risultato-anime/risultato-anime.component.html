@@ -1,56 +1,40 @@
 <div class="container-fluid">
-  <form action="/SpecificaAnime">
-    <div class="dropdown">
-      <div class="btn-group">
+  <div class="btn-group" role="group">
 
-        <button class="btn btn-secondary  float-start dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          Tipo
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li *ngFor="let s of generi">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Checkme2" />
-              <label class="form-check-label">{{s}}</label>
-            </div>
-          </li>
-        </ul>
-        <button class="btn btn-secondary float-end dropdown-toggle " type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          Rating
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li>
-            <input type="range" value="0" max="10" name="volume" step="0.1"
-              oninput="this.nextElementSibling.value = this.value">
-            <output> 0 </output>
-          </li>
-        </ul>
-      </div>
-      <button type="submit" class="btn btn-primary">Conferma</button>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      Tipo
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li *ngFor="let s of generi">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="{{s}}" id="cb-{{s}}" (change)="changeType($event)"
+            checked />
+          <label class="form-check-label">{{s}}</label>
+        </div>
+      </li>
+    </ul>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      Rating
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li>
+        <div class="dropdown-item">
+          <input #range type="range" value="0" max="10" name="volume" step="0.1"
+            oninput="this.nextElementSibling.value = this.value" (change)="changeType($event)">
+          <output> 0 </output>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-    </div>
-  </form>
 
   <table class="table table-striped">
     <thead>
-      <th>Nome</th>
-      <th>Generi</th>
-      <th>Tipo</th>
-      <th>Episodi</th>
-      <th>Rating</th>
-
     </thead>
     <tbody>
-      <tr *ngFor="let s of anime">
+      <tr *ngFor="let s of filteredAnimes">
         <td>{{ s.nome }}</td>
         <td>{{ s.generi }}</td>
         <td>{{ s.tipo }}</td>
-        <td>{{ s.episodi }}</td>
-        <td>{{ s.rating }}</td>
-
-      </tr>
-    </tbody>
-  </table>
-
-</div>

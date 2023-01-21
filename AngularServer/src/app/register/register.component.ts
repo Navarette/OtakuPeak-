@@ -2,7 +2,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Data } from 'src/models/redirectData.model';
+import { Data } from 'src/models/registerData.model';
+import { StorageService } from 'src/services/storage.service';
 
 @Component({
   selector: 'app-register',
@@ -10,11 +11,16 @@ import { Data } from 'src/models/redirectData.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-0qltod93fvs.ws-eu83.gitpod.io/Register";
+  url: string = "https://3000-ghebr0us-otakupeak-edj4ug44u7i.ws-eu83.gitpod.io/Register";
   form!: FormGroup;
   errorMessage!: string;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private router: Router,
+    private storage: StorageService
+  ) { }
 
 
   ngOnInit(): void {
@@ -24,7 +30,7 @@ export class RegisterComponent {
       pwd: ["", [Validators.required]]
     });
   }
-  
+
 
   submit() {
     let body: HttpParams = new HttpParams();
@@ -41,12 +47,17 @@ export class RegisterComponent {
       params: body,
       responseType: "json"
     }).subscribe(data => {
-      console.log(data);
+      console.log(data.data.id);
+      console.log(data.errorMessage);
 
-      if(data.url != null) {
-        this.router.navigate(["GenereRegister"]);
+      if (data.statusCode == 200 ) {
+        this.storage.saveData('id', data.data.id.toString())
+        this.storage.saveData('email', data.data.email)
+        this.storage.saveData('username', data.data.username)
+        
+        this.router.navigate(["Register/genere"]);
       } else {
-        this.errorMessage = data.data;
+        this.errorMessage = data.errorMessage;
       }
     })
   }

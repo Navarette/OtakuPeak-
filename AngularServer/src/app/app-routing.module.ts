@@ -23,7 +23,7 @@ export const routes: Routes = [
 
   { path: 'Login', component: LoginComponent },
   { path: 'Register', component: RegisterComponent },
-  { path: 'GenereRegister', component: GenereRegisterComponent },
+  { path: 'Register/genere', component: GenereRegisterComponent },
 
   { path: 'TipoRicercaAnime', component: TipoRicercaAnimeComponent },
   { path: 'TitoloAnime', component: TitoloAnimeComponent },

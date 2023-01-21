@@ -11,8 +11,11 @@ import { GenereAnimeComponent } from '../genere-anime/genere-anime.component';
   styleUrls: ['./risultato-anime.component.css']
 })
 export class RisultatoAnimeComponent implements OnInit {
-  url: string = "https://3000-ghebr0us-otakupeak-0qltod93fvs.ws-eu83.gitpod.io/RisultatoAnime";
+  url: string = "https://3000-ghebr0us-otakupeak-edj4ug44u7i.ws-eu83.gitpod.io/RisultatoAnime";
   anime!: any;
+  types: String[] = [];
+  rating: number = 0;
+  filteredAnimes: any;
   vettoreScelte!: any;
   generi: String[] = [];
   tipi: String[] = [];
@@ -41,8 +44,11 @@ export class RisultatoAnimeComponent implements OnInit {
   get(url: string): void {
     this.http.get<Data[]>(url).subscribe(data => {
       for (const s of data) {
-        this.generi.push(s.tipo)
+        this.generi.push(s.tipo);
+        this.types.push(s.tipo);
       }
+      this.filteredAnimes = this.anime;
+      this.types = this.dropDuplicate(this.types);
       this.anime = data;
       this.generi = this.dropDuplicate(this.generi);
     });
@@ -53,5 +59,32 @@ export class RisultatoAnimeComponent implements OnInit {
       return arr.indexOf(element) === index;
     }).filter(el => el != null);
     return arr;
+  }
+  changeType(e: any): void {
+    // Ottengo il valore dell'input ed il tipo di input
+    var value = e.target.value;
+    var type = e.target.type;
+
+    if (type == 'checkbox') {
+      var isChecked = e.target.checked;
+
+      // Controllo se e' selezionata la checkbox
+      if (isChecked)
+        // Se e' selezionata aggiungo il valore di essa al'array
+        this.types.push(value)
+      else
+        // Altrimenti la rimuovo
+        this.types.splice(this.types.indexOf(value), 1);
+    }
+
+    if (type == 'range') {
+      // Associo il valore del range alla variabile globale della classe
+      this.rating = value;
+    }
+
+    // console.log(isChecked, value, this.types, type, this.rating)
+
+    // Applico il filtro all'array degli anime importato dal Database
+    this.filteredAnimes = this.anime.filter((a: any) => this.types.includes(a.tipo) && parseInt(a.rating) >= this.rating);
   }
 }

@@ -7,7 +7,7 @@
         <form>
           <div class="form-check d-inline-flex" *ngFor="let n of nome">
             <input class="form-check-input" type="checkbox" name="scelta" value="{{n.nome}}" id="{{parse(n.nome)}}"
-              (change)="update(n, $event)">
+              (change)="update(n.id, n.nome, $event)">
             <label class="form-check-label display-1" for="{{parse(n.nome)}}">{{n.nome}}</label>
           </div>
         </form>
@@ -18,7 +18,8 @@
   <!-- btn -->
     <div class="row">
       <div class="btn aligns-items-center">
-        <input (click)="click($event)" type="submit" class="btn btn-light mt-3 display-1">
+        
+        <button type="submit" class="btn btn-light mt-3 display-1" (click)="submit()">INVIA</button>
       </div>
     </div>
   </div>
