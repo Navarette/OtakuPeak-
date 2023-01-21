@@ -14,3 +14,10 @@
     background-image: linear-gradient(RGB(241, 243, 181), RGB(20, 80, 89));
     font-family: 'the_stoothgartregular';
 }
+.red{
+    background-image: linear-gradient(rgb(219, 64, 64),rgb(145, 38, 38));
+    font-family: 'the_stoothgartregular';
+}
+::placeholder {
+   text-align: center; 
+}

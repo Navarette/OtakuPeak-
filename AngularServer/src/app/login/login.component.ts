@@ -10,7 +10,7 @@ import { Data } from 'src/models/LoginData.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-i9w30u3vcd4.ws-eu83.gitpod.io/Login";
+  url: string = "https://3000-ghebr0us-otakupeak-0qltod93fvs.ws-eu83.gitpod.io/Login";
   form!: FormGroup;
   errorMessage!: string;
 

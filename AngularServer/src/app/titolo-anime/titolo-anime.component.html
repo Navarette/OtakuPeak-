@@ -1,7 +1,7 @@
-<div class="container-fluid">
-  <input #box (keyup)="onKey(box.value)" class="form-control mt-3 mb-3">
+<div class="container-fluid red flex-column d-flex min-vh-100 display-1">
+  <input #box (keyup)="onKey(box.value)" class="form-control mt-3 mb-3" placeholder="CERCA">
   <p *ngIf="loading">LOADING...</p>
-  <table *ngIf="!loading && titoloa.length >= 1" class="table table-striped">
+  <table *ngIf="!loading && titoloa.length >= 1" class="table table-striped bkg-table flex-column text-white rounded">
     <thead>
     <th>nome</th>
     <th>generi</th>

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./risultato-manga.component.css']
 })
 export class RisultatoMangaComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-i9w30u3vcd4.ws-eu83.gitpod.io/RisultatoManga";
+  url: string = "https://3000-ghebr0us-otakupeak-0qltod93fvs.ws-eu83.gitpod.io/RisultatoManga";
   generim: String[] = [];
   vettoreScelte! : any;
   manga!:any;

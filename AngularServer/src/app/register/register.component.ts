@@ -10,7 +10,7 @@ import { Data } from 'src/models/redirectData.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-i9w30u3vcd4.ws-eu83.gitpod.io/Register";
+  url: string = "https://3000-ghebr0us-otakupeak-0qltod93fvs.ws-eu83.gitpod.io/Register";
   form!: FormGroup;
   errorMessage!: string;
 
