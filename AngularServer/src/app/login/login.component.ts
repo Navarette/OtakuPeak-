@@ -10,7 +10,7 @@ import { Data } from 'src/models/LoginData.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-edj4ug44u7i.ws-eu83.gitpod.io/Login";
+  url: string = "https://3000-ghebr0us-otakupeak-heq3c659ozp.ws-eu83.gitpod.io/Login";
   form!: FormGroup;
   errorMessage!: string;
 
@@ -43,6 +43,7 @@ export class LoginComponent {
 
       if(data.statusCode == 200) {
         this.router.navigate(["Home"]);
+        
       } else {
         this.errorMessage = data.data;
       }

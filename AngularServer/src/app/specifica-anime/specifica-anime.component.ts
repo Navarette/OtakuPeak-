@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./specifica-anime.component.css']
 })
 export class SpecificaAnimeComponent implements OnInit {
-  url: string = "https://3000-ghebr0us-otakupeak-edj4ug44u7i.ws-eu83.gitpod.io/SpecificaAnime";
+  url: string = "https://3000-ghebr0us-otakupeak-heq3c659ozp.ws-eu83.gitpod.io/SpecificaAnime";
   tipo!: any;
   vettoreScelte!: any;
 

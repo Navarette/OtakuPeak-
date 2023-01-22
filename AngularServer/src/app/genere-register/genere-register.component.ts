@@ -12,7 +12,7 @@ import { StorageService } from 'src/services/storage.service';
 })
 export class GenereRegisterComponent {
   nome! : any;
-  url: string = "https://3000-ghebr0us-otakupeak-edj4ug44u7i.ws-eu83.gitpod.io";
+  url: string = "https://3000-ghebr0us-otakupeak-heq3c659ozp.ws-eu83.gitpod.io";
   selected: Selected[] = []
   errorMessage: string = "";
 
@@ -53,13 +53,12 @@ export class GenereRegisterComponent {
     }).subscribe(data => {
       console.log(data);
 
-      if(data.statusCode == 200) {
-        // this.router.navigate(["Home"]);
+      if (data.statusCode == 200 ) {
+        this.router.navigate(["Home"]);
       } else {
         this.errorMessage = data.errorMessage;
       }
     })
-    
   }
 
   update(id: number, name: string, event: any) {
