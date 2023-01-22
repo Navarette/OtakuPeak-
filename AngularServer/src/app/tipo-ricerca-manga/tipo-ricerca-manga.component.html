@@ -1,2 +1,42 @@
-<button type="submit"><a routerLink="/TitoloManga">Titolo</a></button>
-<button type="submit"><a routerLink="/GenereManga">Genere</a></button>
+<div class="container-fluid text-center min-vh-100 flex-column bkg d-flex aligns-items-center justify-content-center">
+
+    <div class="row">
+        <div class="col-2"></div>
+
+        <div class="col-3">
+            <a class="btn d-inline-block btn-lg" id="btn" type="submit" [routerLink]="['/TitoloManga']">
+                <div class="text-center text-wrap display-1 text-white">TITOLO</div>
+            </a>
+        </div>
+
+        <div class="col-2"></div>
+
+        <div class="col-3">
+            <a class="btn d-inline-block btn-lg" id="btn" type="submit" [routerLink]="['/GenereManga']">
+                <div class="text-center text-wrap display-1 text-white">GENERE</div>
+            </a>
+        </div>
+
+        <div class="col-2"></div>
+
+    </div>
+    <button type="button" class="btn btn-info position-absolute bottom-0 end-0 m-1 text-white" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        Info
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cosa significa Manga?</h5>
+                    <button type="button " class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Manga (漫画) è un termine giapponese che indica i fumetti originari del Giappone.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

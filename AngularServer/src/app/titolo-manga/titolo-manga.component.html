@@ -1,35 +1,33 @@
 <div class="container-fluid">
   <input #box (keyup)="onKey(box.value)" class="form-control mt-3 mb-3">
   <p *ngIf="loading">LOADING...</p>
-  <table *ngIf="!loading && titolom.length > 1" class="table table-striped">
-    <thead>
-      <th>titolo</th>
-      <th>titolo_eng</th>
-      <th>stato</th>
-      <th>volumi</th>
-      <th>capitoli</th>
-      <th>Rank</th>
-      <th>rating</th>
-      <th>sinossi</th>
-      <th>Periodo_pubblicazione</th>
-      <th>generi</th>
-
-    </thead>
-    <tbody>
-      <tr *ngFor="let t of titolom">
-        <td>{{ t.titolo}}</td>
-        <td>{{ t.titolo_eng}}</td>
-        <td>{{ t.stato}}</td>
-        <td>{{ t.volumi}}</td>
-        <td>{{ t.capitoli}}</td>
-        <td>{{ t.Rank}}</td>
-        <td>{{ t.rating}}</td>
-        <td>{{ t.sinossi}}</td>
-        <td>{{ t.Periodo_Pubblicazione}}</td>
-        <td>{{ t.generi }}</td>
-      </tr>
-        </tbody>
-    </table>
-      <div class="alert alert-danger" *ngIf="titolom.length < 1">Non esiste il manga inserito</div>
-</div>
-
+  <div *ngIf="!loading && titolom.length > 1" class="table table-striped">
+    <div class="row">
+      <div *ngFor="let t of titolom">
+        <div class="card text-white bg-dark mb-3 d-inline-block flex-column" style="max-width: 500PX;">
+          <div class="card-header">Titolo Inglese: {{t.titolo_eng}}</div>
+          <div class="card-body m-0">
+            <h5 class="card-title">Titolo :{{t.titolo}}</h5>
+            <li class="list-group-item px-4">Rank: {{t.Rank}}</li>
+            <li class="list-group-item px-4">{{t.rating}}</li>
+            <p class="card-text">{{t.generi}}</p>
+            <ul class="list-group list-group-dark list-group-small">
+              <li class="list-group-item px-4">Stato: {{ t.stato}}</li>
+              <li class="list-group-item px-4">Volumi: {{ t.volumi}}</li>
+              <li class="list-group-item px-4">Capitoli: {{t.capitoli}}</li>
+              <li class="list-group-item px-4">Pubblicazione: {{t.Periodo_Pubblicazione}}</li>
+            </ul>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-
+              expanded="false" aria-controls="collapseExample">
+              SINOSSI
+            </a>
+            
+          </div>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body text-dark">{{t.sinossi}}</div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="titolom.length < 1">Non esiste il manga inserito</div>
+  </div>

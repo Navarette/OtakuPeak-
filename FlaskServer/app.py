@@ -185,7 +185,7 @@ def titoloManga():
 
     print("il dato è" + str(data))
 
-    q = 'SELECT * FROM manga ' + ('WHERE titolo LIKE %(t)s' if data != None and data != '' else "")
+    q = 'SELECT TOP(30) * FROM manga ' + ('WHERE titolo LIKE %(t)s' if data != None and data != '' else "") + ('ORDER BY Rank ASC')
     cursor = conn.cursor(as_dict=True)
     p = {"t": f"%{data}%"}
     cursor.execute(q, p)
