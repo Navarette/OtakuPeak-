@@ -1,7 +1,8 @@
 <div class="container circle-container">
   <div class="ring"></div>
   <section class="mx-auto d-block">
-    <img [src]="gzl_r" class="image pull-right" id="reg" [routerLink]="['/Register']">
+    <img [src]="gzl" class="image pull-right" id="reg" *ngIf="!log" [routerLink]="['/Register']">
+    <img [src]="gzl" class="image pull-right" id="reg" *ngIf="log" (click)="_storageService.removeData()" [routerLink]="['']">
     <img [src]="cvr_white" id="white" class="image">
     <img [src]="bc_level" id="bc" class="image">
     <img [src]="gzl_level" id="gzl" class="image">

@@ -14,8 +14,10 @@ export class StorageService {
   public getData(key: string) {
     return localStorage.getItem(key)
   }
-  public removeData(key: string) {
-    localStorage.removeItem(key);
+  public removeData() {
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
+    localStorage.removeItem('username');
   }
 
   public clearData() {

@@ -14,6 +14,7 @@ export class RegisterComponent {
   url: string = "https://3000-ghebr0us-otakupeak-heq3c659ozp.ws-eu83.gitpod.io/Register";
   form!: FormGroup;
   errorMessage!: string;
+  // log_route!: string;
 
   constructor(
     private http: HttpClient,

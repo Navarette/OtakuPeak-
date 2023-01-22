@@ -62,7 +62,7 @@ def reg():
 def g_reg():
     id = request.args.get("id") # ID dell'utente
     generi = request.args.get("generi")
-
+    data = {}
     cursor = conn.cursor(as_dict=True)
     if generi != None and id != None:
         generi = json.loads(generi)
@@ -74,10 +74,11 @@ def g_reg():
             p = {'id': id, 'g': e['id']}
             cursor.execute(q, params=p)
             conn.commit()
-
+            
     print(id, generi)
     
-    return jsonify({})
+    return jsonify(data)
+
 # --------------------------------LOGIN----------------------------------------------------------
 
 @app.route('/Login', methods=['POST'])
@@ -92,7 +93,7 @@ def login():
     "data": {}
   }
 
-  # Controllo se nono stati passati tutti i parametri richiesti
+  # Controllo se sono stati passati tutti i parametri richiesti
   if None not in [email, password]:
     # Prendo le informazioni dell'utente
     q = 'SELECT * FROM utente WHERE email = %(e)s'
