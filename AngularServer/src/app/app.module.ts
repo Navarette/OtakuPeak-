@@ -18,8 +18,6 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { GenereRegisterComponent } from './genere-register/genere-register.component';
-import { SpecificaAnimeComponent } from './specifica-anime/specifica-anime.component';
-import { SpecificaMangaComponent } from './specifica-manga/specifica-manga.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +35,6 @@ import { SpecificaMangaComponent } from './specifica-manga/specifica-manga.compo
     RegisterComponent,
     LoginComponent,
     GenereRegisterComponent,
-    SpecificaAnimeComponent,
-    SpecificaMangaComponent,
 
   ],
   imports: [
