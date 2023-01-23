@@ -11,7 +11,7 @@ import { GenereAnimeComponent } from '../genere-anime/genere-anime.component';
   styleUrls: ['./risultato-anime.component.css']
 })
 export class RisultatoAnimeComponent implements OnInit {
-  url: string = "https://3000-ghebr0us-otakupeak-heq3c659ozp.ws-eu83.gitpod.io/RisultatoAnime";
+  url: string = "https://3000-ghebr0us-otakupeak-106119ip20x.ws-eu83.gitpod.io/RisultatoAnime";
   anime!: any;
   types: String[] = [];
   rating: number = 0;

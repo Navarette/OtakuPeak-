@@ -3,7 +3,7 @@
   <p *ngIf="loading">LOADING...</p>
   <div *ngIf="!loading && titolom.length > 1" class="table table-striped bkg-table flex-column text-white rounded">
     <div class="row mb-4 p-3">
-      <div class="col-md-4 p-3" *ngFor="let t of titolom">
+      <div class="col-md-4 p-3" *ngFor="let t of titolom;let i = index">
         <div class="card text-white red" style="max-width: 500PX;">
           <div class="card-header">Titolo Inglese: {{t.titolo_eng}}</div>
           <div class="card-body m-0">
@@ -17,13 +17,13 @@
               <li class="list-group-item px-4">Capitoli: {{t.capitoli}}</li>
               <li class="list-group-item px-4">Pubblicazione: {{t.Periodo_Pubblicazione}}</li>
             </ul>
-            <a class="btn bkg-table text-white" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-
+            <a class="btn bkg-table text-white" data-bs-toggle="collapse" href="#collapseExample{{i}}" role="button" aria-
               expanded="false" aria-controls="collapseExample">
               SINOSSI
             </a>
               
           </div>
-          <div class="collapse" id="collapseExample">
+          <div class="collapse" id="collapseExample{{i}}">
             <div class="card card-body text-dark "><h1>{{t.sinossi}}</h1></div>
           </div>
         </div>

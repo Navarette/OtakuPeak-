@@ -88,8 +88,9 @@ def g_reg():
 @app.route('/Login', methods=['POST'])
 def login():
   # Prendo gli argomenti richiesti
-  email = request.args.get('email')
-  password = request.args.get('pwd')
+  email = request.args.get("email")
+  pwd = request.args.get("pwd")
+  print(email,' ', pwd)
 
   data = {
     "statusCode": 200,
@@ -98,7 +99,7 @@ def login():
   }
 
   # Controllo se sono stati passati tutti i parametri richiesti
-  if None not in [email, password]:
+  if None not in [email, pwd]:
     # Prendo le informazioni dell'utente
     q = 'SELECT * FROM utente WHERE email = %(e)s'
     cursor = conn.cursor(as_dict=True)
@@ -109,11 +110,13 @@ def login():
     if len(res) < 1:
       data["statusCode"] = 404
       data["errorMessage"] = "No user was found with that email"
-    elif not (res[0]["pwd"] == password):
+    elif not (res[0]["pwd"] == pwd):
       data["statusCode"] = 403
       data["errorMessage"] = "Wrong password"
     else:
       data["data"] = res
+      data["statusCode"] = 200
+      print('funziono :)')
       
   else:
     data['statusCode'] = 400

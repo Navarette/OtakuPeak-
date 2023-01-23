@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./risultato-manga.component.css']
 })
 export class RisultatoMangaComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-heq3c659ozp.ws-eu83.gitpod.io/RisultatoManga";
+  url: string = "https://3000-ghebr0us-otakupeak-106119ip20x.ws-eu83.gitpod.io/RisultatoManga";
   manga!: any;
   status: String[] = [];
   rating: number = 0;

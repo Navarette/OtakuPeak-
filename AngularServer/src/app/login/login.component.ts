@@ -10,9 +10,10 @@ import { Data } from 'src/models/LoginData.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-heq3c659ozp.ws-eu83.gitpod.io/Login";
+  url: string = "https://3000-ghebr0us-otakupeak-106119ip20x.ws-eu83.gitpod.io/Login";
   form!: FormGroup;
   errorMessage!: string;
+  yo!:any;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) { }
 
@@ -23,39 +24,35 @@ export class LoginComponent {
       pwd: ["", [Validators.required]]
     });
   }
-  
+
 
   submit() {
     let body: HttpParams = new HttpParams();
     body = body.appendAll({
       email: this.form.value.email,
+      
       pwd: this.form.value.pwd
-    });
 
+    });
+    console.log(body)
     this.http.post<Data>(this.url, '', {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }),
       params: body,
       responseType: "json"
-    }).subscribe(data => {
-      console.log(data);
-
-      if(data.statusCode == 200) {
+    }).subscribe(res => {
+      if (res.statusCode == 200) {
+        
+        localStorage.setItem('email',res.data[0].email);
+        localStorage.setItem('id',res.data[0].id);
+        localStorage.setItem('username',res.data[0].username);
         this.router.navigate(["Home"]);
         
       } else {
-        this.errorMessage = data.data;
+        this.errorMessage = res.data;
       }
     })
-//     this.http.post(this.url,{email:data.email,password:data.password}).subscribe(res => {
-//       localStorage.setItem('username',data[0].username)
-//       localStorage.setItem('id',data[0].id)
-//       localStorage.setItem('email',data[0].email)
-//       this.router.navigate(['/Login'])
-//       if (localStorage.getItem('id') != null){
-//         this.router.navigate(['/Home'])
-//       }
-//   });
-// }
-  }}
+    
+  }
+}
