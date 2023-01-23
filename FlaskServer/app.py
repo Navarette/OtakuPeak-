@@ -110,6 +110,7 @@ def login():
       data["errorMessage"] = "Wrong password"
     else:
       data["data"] = res
+      
   else:
     data['statusCode'] = 400
     data['errorMessage'] = "No email or password provided"
@@ -185,7 +186,7 @@ def titoloManga():
 
     print("il dato è" + str(data))
 
-    q = 'SELECT TOP(30) * FROM manga ' + ('WHERE titolo LIKE %(t)s' if data != None and data != '' else "") + ('ORDER BY Rank ASC')
+    q = 'SELECT TOP(30) * FROM manga ' + ('WHERE titolo LIKE %(t)s' if data != None and data != '' else "")
     cursor = conn.cursor(as_dict=True)
     p = {"t": f"%{data}%"}
     cursor.execute(q, p)

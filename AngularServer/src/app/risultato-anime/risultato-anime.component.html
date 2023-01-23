@@ -1,7 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid red flex-column d-flex min-vh-100 display-1">
   <div class="btn-group" role="group">
 
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+    <button class="btn btn-secondary dropdown-toggle red" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
       aria-expanded="false">
       Tipo
     </button>
@@ -14,7 +14,7 @@
         </div>
       </li>
     </ul>
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+    <button class="btn btn-secondary dropdown-toggle red" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
       aria-expanded="false">
       Rating
     </button>
@@ -30,14 +30,21 @@
   </div>
 
 
-  <table class="table table-striped">
+  <table *ngIf="!loading && vettoreScelte.length >= 1" class="table table-striped bkg-table flex-column text-white rounded">
     <thead>
+      <th>nome</th>
+      <th>generi</th>
+      <th>tipo</th>
+      <th>rating</th>
     </thead>
     <tbody>
       <tr *ngFor="let s of filteredAnimes">
         <td>{{ s.nome }}</td>
         <td>{{ s.generi }}</td>
         <td>{{ s.tipo }}</td>
+        <td>{{ s.rating }}</td>
       </tr>
     </tbody>
   </table>
+  <div class="alert alert-danger" *ngIf="vettoreScelte.length < 1">Non esiste l'Anime</div>
+</div>

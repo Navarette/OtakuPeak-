@@ -19,8 +19,8 @@ export class RisultatoAnimeComponent implements OnInit {
   vettoreScelte!: any;
   generi: String[] = [];
   tipi: String[] = [];
-
-  constructor(private route: ActivatedRoute, public http: HttpClient) { 
+  loading!: Boolean;
+  constructor(private route: ActivatedRoute, public http: HttpClient) {
 
   }
 

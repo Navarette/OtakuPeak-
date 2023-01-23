@@ -1,43 +1,37 @@
-<div class="container-fluid">
-  <form action="/SpecificaManga">
+<div class="container-fluid red flex-column d-flex min-vh-100 display-1">
+  <div class="btn-group" role="group">
+    <!-- bottone stato -->
+    <button class="btn btn-secondary dropdown-toggle red" type="button" id="dropdownMenuButton"
+      data-bs-toggle="dropdown" aria-expanded="false">
+      Stato
+    </button>
+    <!-- dropdown menù stato -->
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li *ngFor="let s of generim">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="{{s}}" id="cb-{{s}}" (change)="changeType($event)"
+            checked />
+          <label class="form-check-label">{{s}}</label>
+        </div>
+      </li>
+    </ul>
+    <!-- bottone rating -->
+    <button class="btn btn-secondary dropdown-toggle red" type="button" id="dropdownMenuButton"
+      data-bs-toggle="dropdown" aria-expanded="false">
+      Rating
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li>
+        <div class="dropdown-item">
+          <input #range type="range" value="0" max="10" name="volume" step="0.1"
+            oninput="this.nextElementSibling.value = this.value" (change)="changeType($event)">
+          <output> 0 </output>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-    <div class="dropdown">
-      <div class="btn-group">
-
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          Stato
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li *ngFor="let s of generim">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Checkme2" />
-              <label class="form-check-label">{{s}}</label>
-            </div>
-
-          </li>
-        </ul>
-        <button class="btn btn-secondary float-end dropdown-toggle " type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          Rating
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li>
-            <input type="range" value="0" max="10" name="volume" step="0.1"
-              oninput="this.nextElementSibling.value = this.value">
-            <output> 0 </output>
-          </li>
-        </ul>
-      </div>
-      <button type="submit" class="btn btn-primary">Conferma</button>
-
-    </div>
-
-  </form>
-
-  <hr>
-
-  <table class="table table-striped">
+  <table *ngIf="!loading && vettoreScelte.length >= 1" class="table table-striped bkg-table flex-column text-white rounded">
     <thead>
       <th>Titolo</th>
       <th>Generi</th>
@@ -45,12 +39,13 @@
       <th>Rank</th>
     </thead>
     <tbody>
-      <tr *ngFor="let g of manga">
+      <tr *ngFor="let g of filteredMangas">
         <td>{{ g.titolo }}</td>
-        <td>{{ g.generi }}</td>
-        <td>{{ g.rating }}</td>
         <td>{{ g.Rank }}</td>
+        <td>{{ g.rating }}</td>
+        <td>{{ g.generi }}</td>
       </tr>
     </tbody>
   </table>
+  <div class="alert alert-danger" *ngIf="vettoreScelte.length < 1">Non esiste il Manga</div>
 </div>

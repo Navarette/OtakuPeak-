@@ -48,5 +48,14 @@ export class LoginComponent {
         this.errorMessage = data.data;
       }
     })
-  }
-}
+//     this.http.post(this.url,{email:data.email,password:data.password}).subscribe(res => {
+//       localStorage.setItem('username',data[0].username)
+//       localStorage.setItem('id',data[0].id)
+//       localStorage.setItem('email',data[0].email)
+//       this.router.navigate(['/Login'])
+//       if (localStorage.getItem('id') != null){
+//         this.router.navigate(['/Home'])
+//       }
+//   });
+// }
+  }}
