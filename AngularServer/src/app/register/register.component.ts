@@ -11,7 +11,7 @@ import { StorageService } from 'src/services/storage.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-106119ip20x.ws-eu83.gitpod.io/Register";
+  url: string = "https://3000-ghebr0us-otakupeak-e6t2hrssvh1.ws-eu83.gitpod.io/Register";
   form!: FormGroup;
   errorMessage!: string;
   // log_route!: string;

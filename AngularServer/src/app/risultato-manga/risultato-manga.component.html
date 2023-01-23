@@ -33,9 +33,9 @@
 
   <div *ngIf="!loading && vettoreScelte.length >= 1"
     class="table table-striped bkg-table flex-column text-white rounded">
-    <div class="row mb-4 p-3">
-      <div class="col-md-4 p-3" *ngFor="let t of filteredMangas;let i = index">
-        <div class="card text-white red" style="max-width: 500PX;">
+    <div class="row mb-6 p-3">
+      <div class="col-md-6 p-3" *ngFor="let t of filteredMangas;let i = index">
+        <div class="card text-white red" style="max-width: 1000PX;">
           <div class="card-header">Titolo Inglese: {{t.titolo_eng}}</div>
           <div class="card-body m-0">
             <h5 class="card-title">Titolo :{{t.titolo}}</h5>
@@ -50,12 +50,12 @@
             </ul>
             <a class="btn bkg-table text-white" data-bs-toggle="collapse" href="#collapseExample{{i}}" role="button" aria-
               expanded="false" aria-controls="collapseExample">
-              SINOSSI
+              TRAMA
             </a>
 
           </div>
           <div class="collapse" id="collapseExample{{i}}">
-            <div class="card card-body text-dark ">
+            <div class="card card-body text-dark display-2">
               <h1>{{t.sinossi}}</h1>
             </div>
           </div>
