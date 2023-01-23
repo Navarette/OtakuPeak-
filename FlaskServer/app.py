@@ -62,7 +62,11 @@ def reg():
 def g_reg():
     id = request.args.get("id") # ID dell'utente
     generi = request.args.get("generi")
-    data = {}
+    data = {
+    "statusCode": 200,
+    "errorMessage": "",
+    "data": {}
+  }
     cursor = conn.cursor(as_dict=True)
     if generi != None and id != None:
         generi = json.loads(generi)
@@ -213,7 +217,7 @@ def genereManga():
 def risultatoManga():
     params = request.args.get("scelta").split(",")
     prato = " AND ".join(['generi LIKE \'%'+p+'%\'' for p in params])
-    q = 'SELECT * FROM manga WHERE ' + prato + ' ORDER BY Rank'
+    q = 'SELECT TOP(30) * FROM manga WHERE ' + prato + ' ORDER BY Rank'
     print(q)
     cursor = conn.cursor(as_dict=True)
     cursor.execute(q)

@@ -1,13 +1,12 @@
-<div class="container py-5 h-100">
+<div class="container-fluid py-5 h-100 bkg-table flex-column d-flex min-vh-100 display-1">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <h1 class="text-center font-monospace">Register</h1>
-
-            <form [formGroup]="form" (ngSubmit)="submit()">
+            <h1 class="text-center">Register</h1>
+            <form class="justify-content-center align-items-center flex-column" [formGroup]="form" (ngSubmit)="submit()">
                 <!-- Username input -->
                 <div class="form-outline mb-4">
                     <div class="form-outline mb-12">
-                        <input type="text" class="form-control input-field" id="username" placeholder="Username"
+                        <input type="text" class="form-control input-field display-1" id="username" placeholder="Username"
                             name="username" formControlName="username">
                     </div>
                 </div>
@@ -15,7 +14,7 @@
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                     <div class="form-outline mb-12">
-                        <input type="email" class="form-control input-field" id="email" placeholder="E-Mail"
+                        <input type="email" class="form-control input-field display-1" id="email" placeholder="E-Mail"
                             name="email" formControlName="email">
                     </div>
                 </div>
@@ -23,21 +22,18 @@
                 <!-- Password input -->
                 <div class="form-outline mb-4">
                     <div class="form-outline mb-12">
-                        <input type="password" class="form-control input-field" id="password" placeholder="Password"
+                        <input type="password" class="form-control input-field display-1" id="password" placeholder="Password"
                             name="pwd" formControlName="pwd">
                     </div>
                 </div>
-
-                <!-- Conferma Password input
-                <div class="form-outline mb-4">
-                    <div class="form-outline mb-12">
-                        <input type="password" class="form-control input-field" id="cpwd"  placeholder="Conferma Password" name="cpwd" formControlName="password" required>
-                    </div>
-                </div> -->
-
                 <!-- Submit button -->
-
-                <input class="btn rounded-pill" id="btn" type="submit" [disabled]="!form.valid"/>
+                <div class="justify-content-center align-items-center text-center text-white">
+                    <input class="btn rounded red display-1" id="btn" type="submit" [disabled]="!form.valid" />
+                    
+                </div>
+                <div class="justify-content-center align-items-center text-center text-white">
+                    <a class="btn hover_image display-1" id="btn" type="submit" [routerLink]="['/Login']">HAI GIA' UN'ACCOUNT? ACCEDI!</a>
+                </div>
             </form>
 
         </div>
