@@ -2,12 +2,15 @@
   <div class="ring"></div>
   <section class="mx-auto d-block">
     <img [src]="gzl" class="image pull-right" id="reg" *ngIf="!log" [routerLink]="['/Register']">
-    <img [src]="gzl" class="image pull-right" id="reg" *ngIf="log" (click)="_storageService.removeData()" [routerLink]="['']">
+    <img [src]="gzl" class="image pull-right" id="reg" *ngIf="log" (click)="_storageService.removeData()"
+      [routerLink]="['']">
     <img [src]="cvr_white" id="white" class="image">
     <img [src]="bc_level" id="bc" class="image">
     <img [src]="gzl_level" id="gzl" class="image">
     <img [src]="city_level" id="city" class="image">
   </section>
+
+  <button type="submit" *ngIf="admin()" [routerLink]="['/BackEnd']">?</button>
 
   <h1 class="text-center">
     TUTTO CIO' CHE CERCHI IN UN SOLO SITO

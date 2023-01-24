@@ -14,6 +14,7 @@ import { TitoloMangaComponent } from './titolo-manga/titolo-manga.component';
 import { GenereMangaComponent } from './genere-manga/genere-manga.component';
 import { RisultatoMangaComponent } from './risultato-manga/risultato-manga.component';
 import { GenereRegisterComponent } from './genere-register/genere-register.component';
+import { BackEndComponent } from './back-end/back-end.component';
 
 export const routes: Routes = [
   { path: '', component: StartComponent },
@@ -32,7 +33,8 @@ export const routes: Routes = [
   { path: 'TitoloManga', component: TitoloMangaComponent },
   { path: 'GenereManga', component: GenereMangaComponent },
   { path: 'RisultatoManga', component: RisultatoMangaComponent },
-  
+  { path: 'BackEnd', component: BackEndComponent }
+
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Data } from 'src/models/LoginData.model';
+import { ManagerService } from 'src/services/manager.service';
 
 @Component({
   selector: 'app-login',
@@ -10,15 +11,18 @@ import { Data } from 'src/models/LoginData.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-e6t2hrssvh1.ws-eu83.gitpod.io/Login";
+  url: string = "https://3000-navarette-otakupeak-6jecxm0wkpy.ws-eu83.gitpod.io/Login";
   form!: FormGroup;
   errorMessage!: string;
   yo!:any;
+  statusCode!: number;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) { }
+  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router,public  manager: ManagerService) { }
 
 
   ngOnInit(): void {
+    if (this.manager.getUser.id != -1) this.router.navigate(['/dashboard']);
+
     this.form = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
       pwd: ["", [Validators.required]]
@@ -41,16 +45,17 @@ export class LoginComponent {
       }),
       params: body,
       responseType: "json"
-    }).subscribe(res => {
-      if (res.statusCode == 200) {
-        
-        localStorage.setItem('email',res.data[0].email);
-        localStorage.setItem('id',res.data[0].id);
-        localStorage.setItem('username',res.data[0].username);
+    }).subscribe(data => {
+      if (data.statusCode == 200) {
+        this.manager.setUser(data.data);
+        localStorage.setItem('email', data.data.email);
+        localStorage.setItem('username', data.data.username);
+        localStorage.setItem('administrator', data.data.administrator.toString());
         this.router.navigate(["Home"]);
         
       } else {
-        this.errorMessage = res.data;
+        this.statusCode = data.statusCode;
+        this.errorMessage = data.data.toString();;
       }
     })
     

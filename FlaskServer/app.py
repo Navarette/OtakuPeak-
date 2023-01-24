@@ -17,22 +17,29 @@ conn = pymssql.connect(server='213.140.22.237\SQLEXPRESS',
 app = Flask(__name__)
 CORS(app)
 
+
 @app.route('/')
 def start():
     return render_template('start.html')
+
 
 @app.route('/home')
 def home():
     return render_template('home.html')
 
-@app.route('/Register',methods=['POST'])
+
+@app.route('/Register', methods=['POST'])
 def reg():
     username = request.args.get("username")
     email = request.args.get("email")
     # Il controllo della password e della sua conferma lo faccio fare ad Angular tramite la form
     password = request.args.get("pwd")
     # cpwd = request.args.get("cpwd")
-
+    data = {
+    "statusCode": 200,
+    "errorMessage": "",
+    "data": {}
+     }
     Cq = "SELECT * FROM utente WHERE username = %(username)s OR email = %(email)s"
     Ccursor = conn.cursor(as_dict=True)
     Cp = {"username": f"{username}","email": f"{email}"}
@@ -44,7 +51,7 @@ def reg():
     if len(Cdata) < 1: # Se l'utente non esiste
         print(request.args)
         cursor = conn.cursor(as_dict=True)
-        q = 'INSERT INTO utente (username, email, pwd) VALUES (%(username)s, %(email)s, %(password)s)'
+        q = 'INSERT INTO utente (username, email, pwd,administrator) VALUES (%(username)s, %(email)s, %(password)s,0)'
         p = {"username": f"{username}","email": f"{email}","password": f"{password}"}
         cursor.execute(q, p)
         conn.commit()
@@ -53,8 +60,8 @@ def reg():
         p = {"email": f"{email}"}
         cursor.execute(q, p)
         res = cursor.fetchall()
-
-        return jsonify({'data': res[0], 'statusCode': 200})
+        data["data"] = res[0]
+        return jsonify(data)
     else:
         return jsonify({'errorMessage': 'User already exists!', 'statusCode': 401})
 # --------------------------------GENERI-UTENTE--------------------------------------------------
@@ -114,7 +121,7 @@ def login():
       data["statusCode"] = 403
       data["errorMessage"] = "Wrong password"
     else:
-      data["data"] = res
+      data["data"] = res[0]
       data["statusCode"] = 200
       print('funziono :)')
       
@@ -124,6 +131,27 @@ def login():
   
   return jsonify(data)
 
+@app.route('/api/details', methods=['GET'])
+def get_details():
+  email = request.args.get("email")
+
+  # Prendo tutti gli utente con la email richiesta
+  res = get_user(email)
+
+  data = {
+    "statusCode": 200,
+    "errorMessage": "",
+    "data": {}
+  }
+
+  # Controllo se l'utente esiste
+  if len(res) < 1:
+    data["statusCode"] = 404
+    data["errorMessage"] = "User not found"
+  else:
+    # Restituisco l'utente
+    data["data"] = res
+  return jsonify(data) 
 #---------------------------------------------------------------------------------------------------------------
 # pagina contenente i tipi di ricerca che si vuole utilizzare per gli anime
 @app.route('/tipoRicercaAnime')
@@ -228,7 +256,15 @@ def risultatoManga():
     print(data)
     return jsonify(data)
 
-
+#back-end
+@app.route('/back-end', methods=['GET'])
+def back_end():
+    
+    cursor = conn.cursor(as_dict=True)
+    cursor.execute(q)
+    data = cursor.fetchall()
+    
+    return jsonify(data)
 
 
 

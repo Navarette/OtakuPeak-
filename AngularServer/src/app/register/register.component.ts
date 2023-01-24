@@ -11,7 +11,7 @@ import { StorageService } from 'src/services/storage.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  url: string = "https://3000-ghebr0us-otakupeak-e6t2hrssvh1.ws-eu83.gitpod.io/Register";
+  url: string = "https://3000-navarette-otakupeak-6jecxm0wkpy.ws-eu83.gitpod.io/Register";
   form!: FormGroup;
   errorMessage!: string;
   // log_route!: string;
@@ -48,14 +48,14 @@ export class RegisterComponent {
       params: body,
       responseType: "json"
     }).subscribe(data => {
-      console.log(data.data.id);
+      console.log(data.data);
       console.log(data.errorMessage);
 
       if (data.statusCode == 200 ) {
         this.storage.saveData('id', data.data.id.toString())
         this.storage.saveData('email', data.data.email)
         this.storage.saveData('username', data.data.username)
-        
+        this.storage.saveData('administrator', data.data.administrator.toString())
         this.router.navigate(["Register/genere"]);
       } else {
         this.errorMessage = data.errorMessage;
