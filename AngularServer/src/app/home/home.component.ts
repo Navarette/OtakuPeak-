@@ -39,12 +39,17 @@ export class HomeComponent {
       this.gzl = './assets/images/godzilla-error.png'
     }
   };
-  admin():boolean{
-   const id = this._storageService.getData('id')
-   if (id == '42'){
-    return true;
-   }
-   return false;
+  admin(): boolean {
+    var res = false;
+    const id = this._storageService.getData('id');
+
+    console.table(localStorage)
+    console.log(id, id == '42')
+
+    if (id == '42') {
+      res = true;
+    }
+    return res;
   }
 
 }

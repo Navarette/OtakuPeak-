@@ -10,7 +10,11 @@
     <img [src]="city_level" id="city" class="image">
   </section>
 
-  <button type="submit" *ngIf="admin()" [routerLink]="['/BackEnd']">?</button>
+
+  <div class="text-start text-wrap display-1 text-white">
+    <a class="btn d-inline-block btn-lg" id="btn" type="submit" *ngIf="admin()" [routerLink]="['/BackEnd']">TITOLO </a>
+  </div>
+
 
   <h1 class="text-center">
     TUTTO CIO' CHE CERCHI IN UN SOLO SITO

@@ -49,6 +49,7 @@ export class LoginComponent {
       if (data.statusCode == 200) {
         this.manager.setUser(data.data);
         localStorage.setItem('email', data.data.email);
+        localStorage.setItem('id', data.data.id.toString());
         localStorage.setItem('username', data.data.username);
         localStorage.setItem('administrator', data.data.administrator.toString());
         this.router.navigate(["Home"]);
